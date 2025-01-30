@@ -1,2 +1,3 @@
 # ignore tmp/dev files
 utils/tmp*
+tmp*

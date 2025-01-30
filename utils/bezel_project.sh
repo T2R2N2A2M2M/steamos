@@ -1,22 +1,21 @@
 #!/usr/bin/env bash
-#
-# The Bezel Project - Steam Deck / EmuDeck version (Flatpak RetroArch)
-#
-# Minimal modifications from RetroPie version:
-#  - Removed device checks (Anbernic, OGS, etc.)
-#  - Removed apt/dpkg checks
-#  - Changed overlay/config paths to Steam Deck's Flatpak RetroArch path
-#  - Removed references to /dev/tty1 or systemctl
-#  - Sudo references removed
-
-#  - Script is meant for a normal desktop terminal session
-#
-###############################################################################
-# VARIABLES - Change if your paths differ
-
+# TODO
+# Make sure ROMs is using NO-Intro rom naming convension
+# right now testing on emudeck installed retroarch
+# add config to game override for setting like opacity 1, hide in menu, etc
+# use other thing rather than dialog to avoid install more tihings through pacman or AUR
+# remove imgp as dependencies
+# what's video_fullscreen????????
+# ask for directory path to anything so non emudeck user can use too
+# ask if want overlay behind menu
+# ask if want to hide in menu
+# ask if wnat to enable overlay after initial install
+# option to disble/enable overlay after been installed
+# option to list game that doesn't have bezel
+# add note that the bezel will fit only on 16:9 screen. Force resolution in game property in game mode to 720p or 1080p for bezel to fit properly as I ran the rom through ES-DE. Also need to enable `Set resolution for internal and external display`
 
 RETROARCH_CONFIG_DIR="${HOME}/.var/app/org.libretro.RetroArch/config/retroarch"
-OVERLAY_DIR="${RETROARCH_CONFIG_DIR}/overlay"
+OVERLAY_DIR="${RETROARCH_CONFIG_DIR}/overlays"
 HEIGHT="15"
 WIDTH="55"
 RES="640x360"
@@ -110,6 +109,12 @@ function install_bezel_pack() {
         sed -i "s+/opt/retropie/configs/all/retroarch/overlay+${OVERLAY_DIR}+g" "$file"
         # Force fullscreen in each config
         echo 'video_fullscreen = "true"' >> "$file"
+        # New config option
+        echo 'input_overlay_behind_menu = "true"' >> "$file"
+        echo 'input_overlay_enable = "true"' >> "$file"
+        echo 'input_overlay_hide_in_menu = "false"' >> "$file"
+        echo 'input_overlay_opacity = "1.000000"' >> "$file"
+        
     done
 
     # 3) Set the global retroarch.cfg overlay directory (once)
