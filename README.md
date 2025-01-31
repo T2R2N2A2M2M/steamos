@@ -17,6 +17,7 @@ dotfiles, settings, software, etc
 - Sunshine (Apollo)/Moonlight
 - Syncthing
 - Tailscale
+- Kanata
 
 ## Flatpak Apps
 - Firefox
