@@ -18,6 +18,7 @@ dotfiles, settings, software, etc
 - Syncthing
 - Tailscale
 - Kanata
+- tmux
 
 ## Flatpak Apps
 - Firefox
